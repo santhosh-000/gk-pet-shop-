@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falooda Varieties</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff9f5;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 55px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 25px;
+      font-weight: bold;
+      color: #d35400;
+      font-family: 'Times New Roman', Times, serif;
+      padding-left: 35px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 0%;
+      background: #e67e22;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #e67e22;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background: none;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #ff7300;
+      padding: 15px 20px;
+    }
+
+    .mobile-menu a {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .menu-btn {
+        display: block;
+      }
+      .mobile-menu.show {
+        display: flex;
+      }
+    }
+
+    .falooda{
+        padding: 20px;
+        background-color: orange;
+        text-align: center;
+        color: white;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    /* Cakes container */
+    .cakes-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 per row desktop */
+      gap: 20px;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .cakes-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
+      }
+    }
+
+    /* Card style (square) */
+    .cake-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      aspect-ratio: 1/1; /* Square box */
+    }
+
+    .cake-card img {
+      width: 100%;
+      height: 65%;
+      object-fit: cover;
+    }
+
+    .cake-card .content {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cake-card h3 {
+      color: #ff6f61;
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .cake-card p {
+      font-size: 0.85rem;
+      color: #333;
+    }
+
+    .cake-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer {
+      background: #ecc500;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <img src="/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
+        <span class="logo-text">MR Cake Shop</span>
+      </div>
+      <nav>
+        <a href="/home page.html">Home</a>
+        <a href="/cakes.html">Cakes</a>
+        <a href="/sweets.html">Sweets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" id="menu-btn">☰</button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/home page.html">Home</a>
+      <a href="/cakes.html">Cakes</a>
+      <a href="/sweets.html">Sweets</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <div class="falooda">
+    <h1>Falooda</h1>
+  </div>
+
+  <!-- Cake Varieties -->
+  <section class="cakes-container">
+    <div class="cake-card">
+      <img src="/Stocks/Falooda/f2.jpg" alt="Strawberry Cream">
+      <div class="content">
+        <h3>Strawberry Cream</h3>
+        <p>Fresh strawberries with light cream.</p>
+      </div>
+    </div>
+    <div class="cake-card">
+      <img src="/Stocks/Falooda/f3.jpg" alt="Chocolate Cream">
+      <div class="content">
+        <h3>Chocolate Cream</h3>
+        <p>Rich chocolate layers with silky cream.</p>
+      </div>
+    </div>
+    <div class="cake-card">
+      <img src="/Stocks/Falooda/f4.jpg" alt="Mango Cream">
+      <div class="content">
+        <h3>Mango Cream</h3>
+        <p>Sweet mango puree with fresh cream.</p>
+      </div>
+    </div>
+    <div class="cake-card">
+      <img src="/Stocks/Falooda/Untitled-1.jpg" alt="Blueberry Cream">
+      <div class="content">
+        <h3>Blueberry Cream</h3>
+        <p>Blueberries with smooth cream layers.</p>
+      </div>
+    </div>
+    <div class="cake-card">
+      <img src="/Stocks/Falooda/f3.jpg" alt="Pineapple Cream">
+      <div class="content">
+        <h3>Pineapple Cream</h3>
+        <p>Tangy pineapple with whipped cream.</p>
+      </div>
+    </div>
+    <div class="cake-card">
+      <img src="/Stocks/Falooda/Untitled-1.jpg" alt="Red Velvet">
+      <div class="content">
+        <h3>Red Velvet</h3>
+        <p>Classic red velvet with cream cheese.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MR Cake Shop | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("show");
+    });
+  </script>
+
+</body>
+</html>

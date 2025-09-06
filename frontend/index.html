@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MR Cakes Shop</title>
+  <link rel="stylesheet" href="home page.css">
+</head>
+<style>
+
+  #crfeedbacks{
+    padding: 20px;
+    background-color: rgb(255, 166, 0);
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+
+  }
+.carousel-container {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  text-align: center;
+  background: #fff8f0;
+}
+
+.carousel-item h5 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.carousel-item p {
+  font-style: italic;
+  color: #555;
+}
+
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-buttons button {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.carousel-buttons button:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+
+.card {
+  min-width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.card p {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.card h4 {
+  font-size: 16px;
+  color: #111;
+  margin-top: 8px;
+}
+
+.dots {
+  text-align: center;
+  margin: 12px 0;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.active {
+  background-color: #333;
+}
+
+/* Mobile friendly */
+@media (max-width: 480px) {
+  .card p {
+    font-size: 14px;
+  }
+}
+</style>
+<body>
+
+  <!-- Navbar -->
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <img src="/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
+      <span class="logo-text">MR Cake Shop</span>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn">☰</button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+
+  <!-- Hero -->
+<section>
+  <div class="box1">
+    <div class="whitespace">
+      <h2>Freshly Maded Foods</h2>
+      <p>something about it </p>
+    </div>
+    <div class="banner-image">
+  <img src="/Stocks/1756749544712.jpg" alt="Bakery Image">
+</div>
+  </div>
+</section>
+
+
+  <!-- About -->
+  <section class="about" id="about">
+    <h2>About Us</h2>
+    <p>
+      At Sweet Bakes, we believe every bite should bring a smile 😊.
+      Our bakers craft cakes, cookies, and pastries with love and the freshest ingredients. 
+      Since 2005, we've been spreading sweetness across the city.
+    </p>
+  </section>
+
+  <!-- Products -->
+  <section class="products" id="products">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="/Stocks/Untitled-1.jpg" alt="Chocolate Cake">
+        <h3>Fresh Cream Cakes</h3>
+        <p>Rich, moist and heavenly delicious.</p>
+        <div class="viewmore">
+          <a href="/product1.html">View More</a>
+        </div>
+      </div>
+      <div class="product">
+        <img src="/Stocks/Untitled-5.jpg" alt="Cookies">
+        <h3>Sweats</h3>
+        <p>Crispy, buttery and melts in your mouth.</p>
+        <div class="viewmore">
+          <a href="/product2.html">View More</a>
+        </div>
+      </div>
+      <div class="product">
+        <img src="/Stocks/Untitled-6.jpg" alt="Pastry">
+        <h3>Snacks</h3>
+        <p>Light, creamy and fruity delight.</p>
+        <div class="viewmore">
+           <a href="/product3.html">View More</a>
+        </div>
+      </div>
+      <div class="product">
+        <img src="/Stocks/Untitled-4.jpg" alt="Cupcake">
+        <h3>Falooda</h3>
+        <p>Soft, fluffy and perfectly sweet.</p>
+        <div class="viewmore">
+           <a href="/product4.html">View More</a>
+        </div>
+      </div>
+       <div class="product">
+        <img src="/Stocks/Untitled-2.jpg" alt="Cupcake">
+        <h3>Fresh Juice</h3>
+        <p>Soft, fluffy and perfectly sweet.</p>
+        <div class="viewmore">
+           <a href="/product5.html">View More</a>
+        </div>
+      </div>
+       <div class="product">
+        <img src="/Stocks/Untitled-3.jpg" alt="Cupcake">
+        <h3>Ice Creams</h3>
+        <p>Soft, fluffy and perfectly sweet.</p>
+        <div class="viewmore">
+        <a href="/product6.html">View More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<div id="crfeedbacks">
+  <h2>Custemer Feedbacks</h2>
+<div class="carousel-container">
+  <div class="carousel" id="carousel-content">
+    <!-- Approved feedbacks will load here -->
+  </div>
+
+  <div class="carousel-buttons">
+    <button id="prevBtn">&#10094;</button>
+    <button id="nextBtn">&#10095;</button>
+  </div>
+</div>
+
+</div>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <h2>Give Your Feedback</h2>
+    <form id="feedbackForm">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <textarea name="message" placeholder="Your Feedback" required></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Collect form data
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    message: e.target.message.value
+  };
+
+  console.log("📝 Form data to send:", formData); // Debug log
+
+  try {
+    // Send POST request to backend
+    const res = await fetch("http://localhost:5000/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    // Check if server responded
+    if (!res.ok) {
+      console.error("❌ Server returned an error:", res.status, res.statusText);
+    }
+
+    const data = await res.json();
+    console.log("📩 Server response:", data);
+
+    if (res.ok) {
+      alert("✅ Feedback sent successfully!");
+      e.target.reset();
+    } else {
+      alert("❌ Failed to send feedback!");
+    }
+  } catch (err) {
+    console.error("❌ Error sending feedback:", err);
+    alert("❌ Error sending feedback!");
+  }
+});
+</script>
+
+
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Sweet Bakes. All rights reserved.</p>
+  </footer>
+
+<script>
+  // --- Mobile Menu ---
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("show");
+  });
+
+  // --- Carousel ---
+  const API_URL = "http://localhost:5000";
+  let currentIndex = 0;
+
+  async function loadApprovedFeedbacks() {
+    try {
+      const res = await fetch(`${API_URL}/feedback/approved`);
+      const feedbacks = await res.json();
+      const container = document.getElementById("carousel-content");
+
+      container.innerHTML = "";
+      if (feedbacks.length === 0) {
+        container.innerHTML = `
+          <div class="carousel-item">
+            <h5>No feedback yet</h5>
+            <p>"Approved feedbacks will appear here."</p>
+          </div>
+        `;
+        return;
+      }
+
+      feedbacks.forEach(fb => {
+        const item = document.createElement("div");
+        item.className = "carousel-item";
+        item.innerHTML = `
+          <h5>- ${fb.name}</h5>
+          <p>"${fb.message}"</p>
+        `;
+        container.appendChild(item);
+      });
+
+      showSlide(0); // show first slide
+    } catch (err) {
+      console.error("Error loading feedbacks", err);
+    }
+  }
+
+  function showSlide(index) {
+    const container = document.getElementById("carousel-content");
+    const totalItems = container.children.length;
+    if (totalItems === 0) return;
+
+    if (index >= totalItems) currentIndex = 0;
+    else if (index < 0) currentIndex = totalItems - 1;
+    else currentIndex = index;
+
+    const offset = -currentIndex * 100;
+    container.style.transform = `translateX(${offset}%)`;
+  }
+
+  // Button Events
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    showSlide(currentIndex - 1);
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    showSlide(currentIndex + 1);
+  });
+
+  // Auto Slide
+  setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 3000);
+
+  // Initial Load
+  loadApprovedFeedbacks();
+</script>
+
+
+</body>
+</html>
