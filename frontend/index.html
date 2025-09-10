@@ -260,11 +260,12 @@ document.getElementById("feedbackForm").addEventListener("submit", async (e) => 
 
   try {
     // Send POST request to backend
-const res = await fetch("https://bakery-backend-v2.onrender.com", {
+const res = await fetch("https://bakery-backend-v2.onrender.com/feedback", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(formData)
 });
+
 
 
     // Check if server responded

@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const path = require("path"); // ✅ Needed for sending frontend files
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -10,8 +10,8 @@ const app = express();
 // ✅ CORS setup
 app.use(cors({
   origin: [
-    "https://bakerysnack.netlify.app", // production (Netlify)
-    "http://localhost:3000"            // local testing (React/Frontend)
+    "https://bakerycorner.netlify.app", // ✅ correct production frontend
+    "http://localhost:3000"            // local frontend
   ],
   methods: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
@@ -40,7 +40,6 @@ const feedbackSchema = new mongoose.Schema({
 const Feedback = mongoose.model("Feedback", feedbackSchema);
 
 // --- API Routes ---
-
 // Save feedback
 app.post("/feedback", async (req, res) => {
   try {
@@ -103,10 +102,10 @@ app.get("/admin", (req, res) => {
   res.send(`... your existing HTML ...`);
 });
 
-// --- Catch-all route for Render & frontend integration ---
-app.get('*', (req, res) => {
-  res.status(404).send('❌ Not Found');
-});
+// --- Serve Frontend Static Files ---
+app.use(express.static(path.join(__dirname, "frontend"))); 
+// ✅ Just this is enough for HTML/CSS projects
+// ❌ Don't use React-style catch-all route
 
 // --- Server ---
 const PORT = process.env.PORT || 5000;
