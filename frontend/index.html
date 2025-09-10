@@ -260,7 +260,7 @@ document.getElementById("feedbackForm").addEventListener("submit", async (e) => 
 
   try {
     // Send POST request to backend
-const res = await fetch("https://bakery-backend-1.onrender.com/feedback", {
+const res = await fetch("https://bakery-backend-v2.onrender.com", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(formData)
@@ -307,7 +307,7 @@ const res = await fetch("https://bakery-backend-1.onrender.com/feedback", {
   });
 
   // --- Carousel ---
-  const API_URL = "https://bakery-backend-1.onrender.com/feedback";
+  const API_URL = "https://bakery-backend-v2.onrender.com";
   let currentIndex = 0;
 
   async function loadApprovedFeedbacks() {

@@ -8,7 +8,7 @@ const app = express();
 // ✅ Allow only Netlify + Localhost
 app.use(cors({
   origin: [
-    "https://newbakeryy.netlify.app", // production (Netlify)
+    "https://bakerysnack.netlify.app/", // production (Netlify)
     "http://localhost:3000"           // local testing (React/Frontend)
   ],
   methods: ["GET", "POST", "PATCH", "DELETE"],
