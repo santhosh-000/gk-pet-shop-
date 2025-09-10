@@ -1,15 +1,17 @@
+// --- Server Setup ---
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config(); // ✅ env support
+const path = require("path"); // ✅ Needed for sending frontend files
+require("dotenv").config();
 
 const app = express();
 
-// ✅ Allow only Netlify + Localhost
+// ✅ CORS setup
 app.use(cors({
   origin: [
-    "https://bakerysnack.netlify.app/", // production (Netlify)
-    "http://localhost:3000"           // local testing (React/Frontend)
+    "https://bakerysnack.netlify.app", // production (Netlify)
+    "http://localhost:3000"            // local testing (React/Frontend)
   ],
   methods: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
@@ -22,12 +24,12 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
-// --- Root route for Render health check ---
+// --- Root route for health check ---
 app.get('/', (req, res) => {
-  res.send('🍰 Bakery Backend is running!');  // <- updated
+  res.send('🍰 Bakery Backend is running!');
 });
 
-// --- Schema ---
+// --- Feedback Schema ---
 const feedbackSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -37,7 +39,7 @@ const feedbackSchema = new mongoose.Schema({
 });
 const Feedback = mongoose.model("Feedback", feedbackSchema);
 
-// --- API routes ---
+// --- API Routes ---
 
 // Save feedback
 app.post("/feedback", async (req, res) => {
@@ -60,7 +62,7 @@ app.get("/feedback", async (req, res) => {
   }
 });
 
-// Get only approved feedbacks
+// Get approved feedbacks
 app.get("/feedback/approved", async (req, res) => {
   try {
     const approvedFeedbacks = await Feedback.find({ status: "approved" });
@@ -101,12 +103,10 @@ app.get("/admin", (req, res) => {
   res.send(`... your existing HTML ...`);
 });
 
-// --- Catch-all route for undefined paths ---
-app.get('/*', (req, res) => {
-  res.send('Not Found');
+// --- Catch-all route for Render & frontend integration ---
+app.get('*', (req, res) => {
+  res.status(404).send('❌ Not Found');
 });
-
-
 
 // --- Server ---
 const PORT = process.env.PORT || 5000;
