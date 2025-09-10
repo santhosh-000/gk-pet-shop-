@@ -102,9 +102,11 @@ app.get("/admin", (req, res) => {
 });
 
 // --- Catch-all route for undefined paths ---
-app.all('*', (req, res) => {
-  res.status(404).send('❌ Route not found on backend');
+app.get('/*', (req, res) => {
+  res.send('Not Found');
 });
+
+
 
 // --- Server ---
 const PORT = process.env.PORT || 5000;
