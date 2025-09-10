@@ -244,6 +244,7 @@
     <textarea name="message" placeholder="Your Feedback" required></textarea><br>
     <button type="submit">Submit</button>
   </form>
+  
 
 <script>
 document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
@@ -260,7 +261,7 @@ document.getElementById("feedbackForm").addEventListener("submit", async (e) => 
 
   try {
     // Send POST request to backend
-const res = await fetch("https://bakery-backend-v2.onrender.com/feedback", {
+const res = await fetch("https://bakery-backend-1.onrender.com/feedback", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(formData)
@@ -299,81 +300,85 @@ const res = await fetch("https://bakery-backend-v2.onrender.com/feedback", {
   </footer>
 
 <script>
-  // --- Mobile Menu ---
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+const API_URL = "https://bakery-backend-1.onrender.com";
+let currentIndex = 0;
 
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("show");
-  });
-
-  // --- Carousel ---
-  const API_URL = "https://bakery-backend-v2.onrender.com";
-  let currentIndex = 0;
-
-  async function loadApprovedFeedbacks() {
-    try {
-      const res = await fetch(`${API_URL}/feedback/approved`);
-      const feedbacks = await res.json();
-      const container = document.getElementById("carousel-content");
-
-   container.innerHTML = "";
-if (!Array.isArray(feedbacks) || feedbacks.length === 0) {
-  container.innerHTML = `
-    <div class="carousel-item">
-      <h5>No feedback yet</h5>
-      <p>"Approved feedbacks will appear here."</p>
-    </div>
-  `;
-  return;
+// --- Carousel ---
+async function loadApprovedFeedbacks() {
+  try {
+    const res = await fetch(`${API_URL}/feedback/approved`);
+    const feedbacks = await res.json();
+    const container = document.getElementById("carousel-content");
+    container.innerHTML = "";
+    if (!Array.isArray(feedbacks) || feedbacks.length === 0) {
+      container.innerHTML = `<div class="carousel-item"><h5>No feedback yet</h5><p>"Approved feedbacks will appear here."</p></div>`;
+      return;
+    }
+    feedbacks.forEach(fb => {
+      const item = document.createElement("div");
+      item.className = "carousel-item";
+      item.innerHTML = `<h5>- ${fb.name}</h5><p>"${fb.message}"</p>`;
+      container.appendChild(item);
+    });
+    showSlide(0);
+  } catch (err) {
+    console.error("Error loading feedbacks", err);
+  }
 }
 
+function showSlide(index) {
+  const container = document.getElementById("carousel-content");
+  const totalItems = container.children.length;
+  if (totalItems === 0) return;
+  currentIndex = (index + totalItems) % totalItems;
+  container.style.transform = `translateX(${-currentIndex * 100}%)`;
+}
 
-      feedbacks.forEach(fb => {
-        const item = document.createElement("div");
-        item.className = "carousel-item";
-        item.innerHTML = `
-          <h5>- ${fb.name}</h5>
-          <p>"${fb.message}"</p>
-        `;
-        container.appendChild(item);
-      });
+document.getElementById("prevBtn").addEventListener("click", () => showSlide(currentIndex - 1));
+document.getElementById("nextBtn").addEventListener("click", () => showSlide(currentIndex + 1));
+setInterval(() => showSlide(currentIndex + 1), 3000);
 
-      showSlide(0); // show first slide
-    } catch (err) {
-      console.error("Error loading feedbacks", err);
+// --- Feedback Form ---
+const feedbackForm = document.getElementById("feedbackForm");
+feedbackForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = feedbackForm.name.value;
+  const email = feedbackForm.email.value;
+  const message = feedbackForm.message.value;
+
+  try {
+    const res = await fetch(`${API_URL}/feedback`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      alert("✅ Feedback sent successfully!");
+      feedbackForm.reset();
+      loadApprovedFeedbacks();
+    } else {
+      alert("❌ Failed to send feedback!");
+      console.error(data);
     }
+  } catch (err) {
+    console.error("Error sending feedback:", err);
+    alert("❌ Error sending feedback. Try again!");
   }
+});
 
-  function showSlide(index) {
-    const container = document.getElementById("carousel-content");
-    const totalItems = container.children.length;
-    if (totalItems === 0) return;
+// --- Mobile Menu ---
+const menuBtn = document.getElementById("menu-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("show");
+});
 
-    if (index >= totalItems) currentIndex = 0;
-    else if (index < 0) currentIndex = totalItems - 1;
-    else currentIndex = index;
-
-    const offset = -currentIndex * 100;
-    container.style.transform = `translateX(${offset}%)`;
-  }
-
-  // Button Events
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    showSlide(currentIndex - 1);
-  });
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    showSlide(currentIndex + 1);
-  });
-
-  // Auto Slide
-  setInterval(() => {
-    showSlide(currentIndex + 1);
-  }, 3000);
-
-  // Initial Load
-  loadApprovedFeedbacks();
+// Initial load
+loadApprovedFeedbacks();
 </script>
+
+
 
 
 </body>
