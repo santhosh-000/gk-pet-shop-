@@ -260,11 +260,12 @@ document.getElementById("feedbackForm").addEventListener("submit", async (e) => 
 
   try {
     // Send POST request to backend
-    const res = await fetch("http://localhost:5000/feedback", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
+const res = await fetch("https://bakery-backend-1.onrender.com/feedback", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData)
+});
+
 
     // Check if server responded
     if (!res.ok) {
@@ -306,7 +307,7 @@ document.getElementById("feedbackForm").addEventListener("submit", async (e) => 
   });
 
   // --- Carousel ---
-  const API_URL = "http://localhost:5000";
+  const API_URL = "https://bakery-backend-1.onrender.com/feedback";
   let currentIndex = 0;
 
   async function loadApprovedFeedbacks() {
@@ -315,16 +316,17 @@ document.getElementById("feedbackForm").addEventListener("submit", async (e) => 
       const feedbacks = await res.json();
       const container = document.getElementById("carousel-content");
 
-      container.innerHTML = "";
-      if (feedbacks.length === 0) {
-        container.innerHTML = `
-          <div class="carousel-item">
-            <h5>No feedback yet</h5>
-            <p>"Approved feedbacks will appear here."</p>
-          </div>
-        `;
-        return;
-      }
+   container.innerHTML = "";
+if (!Array.isArray(feedbacks) || feedbacks.length === 0) {
+  container.innerHTML = `
+    <div class="carousel-item">
+      <h5>No feedback yet</h5>
+      <p>"Approved feedbacks will appear here."</p>
+    </div>
+  `;
+  return;
+}
+
 
       feedbacks.forEach(fb => {
         const item = document.createElement("div");
