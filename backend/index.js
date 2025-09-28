@@ -10,7 +10,7 @@ const app = express();
 // ✅ CORS setup
 app.use(cors({
   origin: [
-    "https://bakerycityv8.netlify.app", // ✅ correct production frontend
+    "https://gkpetshopandaquarium.netlify.app", // ✅ correct production frontend
     "http://localhost:3000"            // local frontend
   ],
   methods: ["GET", "POST", "PATCH", "DELETE"],

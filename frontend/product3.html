@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweets Varieties</title>
+  <title>Birds Varieties</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
-      background: #fff9f5;
+      background: #e6f7ff; /* light sky blue */
       color: #333;
       display: flex;
       flex-direction: column;
@@ -22,242 +18,235 @@
     }
 
     /* Navbar */
-
     header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #ffffff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.navbar {
-  position: sticky;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #ffffff; /* White navbar */
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 px px rgba(255, 255, 255, 0.3); /* Strong visible shadow */
-}
-
-
-    .logo {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0088cc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .navbar {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      padding: 15px 20px;
+      color: white;
     }
-
-    .logo img {
-      height: 55px;
-      width: auto;
-    }
-
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 50px; width: auto; }
     .logo-text {
-      font-size: 25px;
+      font-size: 24px;
       font-weight: bold;
-      color: #d35400;
-      font-family: 'Times New Roman', Times, serif;
-      padding-left: 35px;
+      color: #fff;
+      font-family: "Times New Roman", serif;
+      /* padding-left: 80px; */
     }
-
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
+    nav { display: flex; gap: 20px; }
     nav a {
       text-decoration: none;
-      font-size: 18px;
+      color: white;
       font-weight: 500;
-      color: #333;
-      transition: color 0.3s;
+      font-size: 16px;
     }
-
-    nav a:hover {
-      color: #e67e22;
-    }
-
+    nav a:hover { color: #ffdf00; }
     .menu-btn {
       display: none;
       font-size: 26px;
-      cursor: pointer;
-      border: 1px solid #ccc;
+      background: none;
+      border: 2px solid white;
       padding: 5px 10px;
       border-radius: 5px;
-      background: none;
+      color: white;
+      cursor: pointer;
     }
-
     .mobile-menu {
       display: none;
       flex-direction: column;
-      background: #ff7300;
-      padding: 15px 20px;
+      background: #006699;
+      padding: 10px 20px;
     }
-
     .mobile-menu a {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      text-decoration: none;
-      color: #ffffff;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-      .menu-btn {
-        display: block;
-      }
-      .mobile-menu.show {
-        display: flex;
-      }
-    }
-
-    .sweets{
-      padding: 20px;
-      background-color: orange;
-      font-family: Georgia, 'Times New Roman', Times, serif;
       color: white;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-btn { display: block; }
+      .mobile-menu.show { display: flex; }
+    }
+
+    /* Birds Section */
+    .birds-header {
+      padding: 25px;
       text-align: center;
+      background: linear-gradient(135deg, #00bfff, #00ff99);
+      color: white;
+      font-family: Georgia, serif;
     }
 
-    /* Main Section */
-    main {
-      flex: 1;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    main h1 {
-      margin-bottom: 2rem;
-      color: #e85a4f;
-    }
-
-    /* Sweets Grid */
-    .sweets-grid {
+    /* Birds Grid */
+    .birds-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
+      padding: 2rem;
     }
-
-    .sweet-card {
+    .bird-card {
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1rem;
-      transition: transform 0.2s ease;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .bird-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
     }
 
-    .sweet-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .sweet-card img {
+    /* Bird Images - Rounded Rectangle with Border */
+    .bird-card img {
       width: 100%;
-      border-radius: 8px;
-      height: 150px;
+      height: 200px;
+      border-radius: 20px;      /* smooth corners instead of circle */
       object-fit: cover;
+      border: 5px solid #0088cc; /* blue border */
     }
 
-    .sweet-card h3 {
-      margin-top: 10px;
-      color: #ff6f61;
+    .bird-card h3 {
+      margin-top: 12px;
+      color: #0088cc;
+    }
+    .bird-card p {
+      font-size: 14px;
+      color: #555;
+      margin-top: 6px;
     }
 
     /* Footer */
     footer {
-      background: #ecc500;
+      background: #0088cc;
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 15px;
     }
-
   </style>
 </head>
 <body>
 
-  <!-- Navbar (same as Cakes page) -->
+  <!-- Navbar -->
   <header>
     <div class="navbar">
       <div class="logo">
-        <img src="/frontend/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
-        <span class="logo-text">MR Cake Shop</span>
+        <img src="/frontend/Stocks/Gk logo 1.png" alt="Birds Logo">
+        <span class="logo-text">GK Pet Shop</span>
       </div>
       <nav>
-        <a href="/frontend/home page.html">Home</a>
-        <a href="/frontend/cakes.html">Cakes</a>
-        <a href="/frontend/sweets.html">Sweets</a>
-        <a href="/frontend#contact">Contact</a>
+      <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
       </nav>
       <button class="menu-btn" id="menu-btn">☰</button>
     </div>
-
     <div class="mobile-menu" id="mobile-menu">
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend/cakes.html">Cakes</a>
-      <a href="/frontend/sweets.html">Sweets</a>
-      <a href="/frontend/#contact">Contact</a>
+      <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
     </div>
   </header>
 
-<div class="sweets">
-  <h1>Snacks</h1>
-</div>
-  <!-- Main Content -->
+  <!-- Birds Section -->
+  <section class="birds-header" id="birds">
+    <h1>Our Beautiful Bird Varieties</h1>
+  </section>
+
+  <!-- Birds Grid -->
   <main>
-    <div class="sweets-grid">
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s2.jpg" alt="Ladoo">
-        <h3>Bajji</h3>
+    <div class="birds-grid">
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/r 1.jpg" alt="Parrot">
+        <h3>Parrot</h3>
+        <p>Colorful talking bird, popular as a pet.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s3.jpg" alt="Gulab Jamun">
-        <h3>Mixer</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/button.jpg" alt="Peacock">
+        <h3>Peacock</h3>
+        <p>National bird of India with majestic feathers.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s4.jpg" alt="Barfi">
-        <h3>Kara Sevu</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/cocktail.jpg" alt="Sparrow">
+        <h3>Sparrow</h3>
+        <p>Small, friendly bird found in homes & gardens.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s5.jpg" alt="Rasgulla">
-        <h3>Pattani</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/conur.jpg" alt="Kingfisher">
+        <h3>Kingfisher</h3>
+        <p>Known for its bright blue feathers & fishing skill.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s5.jpg" alt="Halwa">
-        <h3>Nice Mixer</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/fitches.jpg" alt="Owl">
+        <h3>Owl</h3>
+        <p>Wise nocturnal bird with big round eyes.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/Untitled-2.jpg" alt="Mysore Pak">
-        <h3>Kara Snacks</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/green chick.jpg" alt="Eagle">
+        <h3>Eagle</h3>
+        <p>Strong bird of prey, symbol of power & vision.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s4.jpg" alt="Jalebi">
-        <h3>Kaara Kaara Snacks</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/java.jpg" alt="Dove">
+        <h3>Dove</h3>
+        <p>Symbol of peace and love, gentle in nature.</p>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Snacks/s3.jpg" alt="Kaju Katli">
-        <h3>Kaaara Kadalai</h3>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/love birds.jpg" alt="Crow">
+        <h3>Crow</h3>
+        <p>Smartest bird, known for intelligence & memory.</p>
+      </div>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/muniyas.jpg" alt="Duck">
+        <h3>Duck</h3>
+        <p>Water bird with webbed feet, often seen in ponds.</p>
+      </div>
+      <div class="bird-card">
+        <img src="/Stocks/Birds/Birds C/fitches.jpg" alt="Swan">
+        <h3>Swan</h3>
+        <p>Elegant white bird, symbol of grace & beauty.</p>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer>
-    <p>© 2025 MR Cake Shop | All Rights Reserved</p>
-  </footer>
+<footer class="animate-on-scroll">
+  <div style="padding: 10px; background-color: #0baeff; border-radius: 10px; color: white; text-align: center;">
+    Contact Us
+  </div>
+
+  <section class="call-buton" style="padding: 20px; background-color: rgb(255, 255, 255); font-size: large; font-weight: bold; color: rgb(0, 141, 212); display: flex; justify-content: center; align-items: center;font-size: large;">
+    <a class="cc-calto-action-ripple" href="tel:+918838435700" style="display: flex; align-items: center; gap: 12px; color: rgb(0, 150, 243); text-decoration: none;border-radius: 10px;">
+      
+      <!-- Rounded Icon -->
+      <span style="background-color: rgb(0, 96, 141); color: rgb(255, 255, 255); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;border-radius: 0px;">
+        <i class="fa-solid fa-phone"></i>
+      </span>
+      
+      <span class="num">+91 88384 35700</span>
+    </a>
+  </section>
+
+  <p style="text-align: center; margin: 10px;">&copy; All rights reserved.</p>
+</footer>
 
   <script>
     const menuBtn = document.getElementById("menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
-
     menuBtn.addEventListener("click", () => {
       mobileMenu.classList.toggle("show");
     });
   </script>
-
 </body>
 </html>

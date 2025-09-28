@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GK Pet Shop — Foods & Accessories</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- If you already have a central stylesheet, keep this link.
+       Inline CSS below ensures page looks ok standalone too. -->
+  <link rel="stylesheet" href="home page.css">
+  <style>
+    /* ---------------------------
+       Basic reset & fonts
+       --------------------------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height:100%; }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg,#fff 0%, #fff8f3 100%);
+      color: #222;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------------------------
+       Header / Navbar (match home page)
+       --------------------------- */
+    header {
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .navbar {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 18px;
+    }
+    .navbar {
+  position: relative; /* to allow absolute centering */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: white;
+}
+
+/* Logo Left */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* Center Text */
+.logo-text {
+  position: absolute;   /* absolute to center inside navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 700;
+  font-size: 21px;
+  color: rgb(255, 106, 0);
+  white-space: nowrap;
+}
+
+/* Navigation (desktop) */
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+nav a {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #333;
+  text-decoration: none;
+}
+nav a:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Menu Button Right */
+.menu-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+    /* Mobile menu (dropdown) */
+    .mobile-menu {
+      display:none;
+      background:#fff;
+      border-top:1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      padding: 14px;
+    }
+    .mobile-menu.show { display:block; }
+    .mobile-menu a { display:block; padding:10px 6px; border-radius:6px; color:#222; }
+    .mobile-menu a:hover { background: rgba(0,0,0,0.04); }
+
+    /* ---------------------------
+       Hero
+       --------------------------- */
+    .hero {
+      max-width: 1100px;
+      margin: 22px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 0 18px;
+    }
+    .hero .text {
+      padding: 14px;
+    }
+    .hero h1 { font-size:28px; margin-bottom:8px; }
+    .hero p { color:#444; }
+
+    .hero .hero-img {
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      min-height: 180px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg,#fffaf0,#fff8f3);
+    }
+    .hero .hero-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* ---------------------------
+       Section titles
+       --------------------------- */
+    section { max-width:1100px; margin: 28px auto; padding: 0 18px; }
+    .section-title {
+     display:flex;
+      justify-content:space-between;
+       align-items:center; 
+       margin-bottom:1px;
+       padding: 20px;
+      background-color: orange; 
+    color: white;
+  border-radius: 3px;}
+    .section-title h2 { font-size:20px; color:#ffffff; }
+    .section-sub { color:#ffffff; font-size:14px; margin-left: 15px; }
+
+    /* ---------------------------
+       Grid styles for foods & accessories
+       --------------------------- */
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      
+
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      min-height:220px;
+    }
+    .card img { width:100%; height:140px; object-fit:cover; border-radius:8px; margin-bottom:10px; }
+    .card h3 { font-size:16px; margin-bottom:6px; color:#111; }
+    .card p { font-size:13px; color:#555; margin-bottom:10px; }
+    .card .price { font-weight:700; color:#e86b00; margin-bottom:8px; }
+    /* .card .btn-row { margin-top:auto; width:100%; display:flex; gap:8px; }
+    .card a.btn {
+      flex:1;
+      display:inline-block;
+      padding:8px 10px;
+      background:#f5f5f5;
+      border-radius:8px;
+      text-align:center;
+      font-weight:600;
+      color:#222;
+      border:1px solid transparent;
+    }
+    .card a.btn.primary { background:#f7a919; color:#fff; border-color: rgba(0,0,0,0.04); } */
+
+    /* ---------------------------
+       Accessories list (horizontal scroll on mobile)
+       --------------------------- */
+    .accessories-row {
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      padding-bottom:6px;
+    }
+    .accessories-item {
+      min-width:210px;
+      flex:0 0 210px;
+    }
+
+    /* ---------------------------
+       Footer (match home page)
+       --------------------------- */
+    footer {
+      margin-top:36px;
+      padding:18px;
+      background:#fff;
+      border-top:1px solid rgba(0,0,0,0.04);
+      text-align:center;
+      color:#444;
+    }
+
+    /* ---------------------------
+       Scroll animation (same as home)
+       --------------------------- */
+    .animate-on-scroll { opacity:0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .animate-on-scroll.show { opacity:1; transform: translateY(0); }
+
+    /* ---------------------------
+       Responsive
+       --------------------------- */
+    @media (max-width: 1000px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+      .hero { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      nav { display:none; }
+      .menu-btn { display:block; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .card img { height:100px; }
+      .accessories-item { min-width:170px; flex:0 0 170px; }
+    }
+    @media (max-width: 420px) {
+      .grid { grid-template-columns: 1fr; }
+      .logo img { height:42px; }
+      .logo-text { font-size:16px; }
+      .card img { height:140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header (same structure as home page) -->
+  <header>
+    <div class="navbar animate-on-scroll">
+      <div class="logo">
+        <img src="/Stocks/Gk logo 1.png" alt="GK Pet Shop Logo">
+        <span class="logo-text">GK Pet Shop</span>
+      </div>
+
+      <nav>
+    <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
+      </nav>
+
+      <button class="menu-btn" id="menu-btn">☰</button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <!-- <main> -->
+    <section class="hero animate-on-scroll">
+      <div class="hero-img">
+        <img src="/Stocks/Pet shop food img.jpg" alt="Pet foods banner (replace with your image)">
+      </div>
+    </section>
+
+    <!-- Fish -->
+    <section id="accessories" class="animate-on-scroll">
+      <div class="section-title">
+        <h2>Fish</h2>
+        <span class="section-sub"> Foods, Bowls, Carriers & Aquarium supplies</span>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div class="accessories-row" id="accessoriesRow">
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Food/Taiyo Grow Fish 30.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Taiyo Grow Fish Food</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹30</div>
+          </div>
+
+           <div class="card accessories-item" >
+
+            <img src="/Stocks/Fish/Fish Food/Taiyo Grow Fish 120.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Taiyo Grow Fish Food</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹120</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Food/Ornamental Wish Wafer 169.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Ornamental Wish Wafer</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹169</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Food/Optimum Mini Pallet 400.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Optimum Mini Pallet</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹400</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Bowl/CoLora Clear Glass Fish Bowl  178...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>CoLora Clear Glass Fish Bowl</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹178</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Bowl/8‑inch Round Glass Fish Bowl 235.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>8‑inch Round Glass Fish Bowl</h3>
+            <p>AGk Pet Shop</p>
+            <div class="price">₹235</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Bowl/CAS 3.2 L Fish Bowl 258.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>3.2 L Fish Bowl</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹258</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Fish Bowl/8‑inch Transparent Glass Fish Bowl 398.jpg" alt="Dog bowl" style="height:180px;">
+            <h3>8‑inch Transparent Glass Fish Bowl</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹398</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Aquarium Supplies/Mini Fish Tank  1000...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Mini Fish Tank</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹1000</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Aquarium Supplies/motor 198...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Fish Tank Motor</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹198</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Aquarium Supplies/235 motor...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Fish Tank Motor</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹235</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Aquarium Supplies/double betta 300...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>double betta Tank</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹300</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Aquarium Supplies/550 motor...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Fish Tank Motor</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹550</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Fish/Aquarium Supplies/235 motor...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Fish Tank Motor</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹235</div>
+          </div>
+      </div>
+      
+    </section>
+    
+    <!--dog -->
+     <section id="accessories" class="animate-on-scroll">
+      <div class="section-title">
+        <h2>Dogs</h2>
+        <span class="section-sub">Foods, Cage, Carriers & supplies</span>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div class="accessories-row" id="accessoriesRow">
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Dog Food/Pedigree 1kg 338...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Pedigree 1kg</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹338</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Dog Food/large breed 513...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>large breed</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹513</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Dog Food/3kg 844...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>3kg</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹844</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Dog Food/adult meet large 1800...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Adult meet large</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹1800</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Dog Food/chicken veg adult large 2500...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>chicken veg adult large</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹2500</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/dog cage/18 inch 999...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>18 inch Cage</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹999</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/dog cage/Two-Door Top-Load cage 1200...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Two-Door Top-Load cage</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹1200</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Accesories/Dog Collar 199...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Dog Collar</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹199</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Dogs/Accesories/Pull Dog Harness - Step in Dog Harness 15cm  129...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Pull Dog Harness 15m</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹129</div>
+          </div>
+      </div>
+    </section>
+
+  <!--Duck -->
+     <section id="accessories" class="animate-on-scroll">
+      <div class="section-title">
+        <h2>Duck</h2>
+        <span class="section-sub">Foods, Cage, Carriers & supplies</span>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div class="accessories-row" id="accessoriesRow">
+          <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/shopping 220...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Feed</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹220</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/2kg 450...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Feed 2kg</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹450</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/shopping 550...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Feed</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹550</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/8kg 1200...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Feed 8kg</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹1200</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/cage l15 600...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Cage l15</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹600</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/l15 750...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Cage l16</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹750</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/998 1.5 FEET Black...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Cage 1.5 Feet </h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹998</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/1100 18 inch...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Duck Cage 18inch</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹1100</div>
+          </div>
+      </div>
+    </section>
+
+    <!---->
+    <!-- 
+    < birds -->
+    <section id="accessories" class="animate-on-scroll">
+      <div class="section-title">
+        <h2>Birds</h2>
+        <span class="section-sub">Foods, Cage, Carriers & supplies</span>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div class="accessories-row" id="accessoriesRow">
+           <div class="card accessories-item" >
+            <img src="/Stocks/Birds/birds food/450 g 115...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Birds Feed 450g</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹115</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/Birds/birds food/500gm rs186...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Birds Feed 500gm</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹186</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/cage l15 600...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Birds Cage l15</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹600</div>
+          </div>
+
+          
+          <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/998 1.5 FEET Black...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Birds Cage 1.5ft</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹998</div>
+          </div>
+
+          
+          <div class="card accessories-item" >
+            <img src="/Stocks/Duck/duck foods/1100 18 inch...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Birds Cage 18inch</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹1100</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+   <!-- cats -->
+     <section id="accessories" class="animate-on-scroll">
+      <div class="section-title">
+        <h2>Cats</h2>
+        <span class="section-sub">Foods, Cage, Carriers & supplies</span>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <div class="accessories-row" id="accessoriesRow">
+          <div class="card accessories-item" >
+            <img src="/Stocks/cats/Purepet Ocean Fish Adult Dry Cat Food, 1 kg 169...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Adult Dry Cat Food 1kg</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹169</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/cats/Whiskas Junior Mother Cat & Kitten (2-12 Months) Dry Cat Food 250...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Dry Cat Food (2-12 Months)</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹250</div>
+          </div>
+
+           <div class="card accessories-item" >
+            <img src="/Stocks/cats/food bowl 135...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Food Bowl</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹135</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/cats/Buraq Cat Harness Full Body With Leash Set 150...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Cat Harness</h3>
+            <p>Gk Pet Shop</p>
+            <div class="price">₹150</div>
+          </div>
+
+          <div class="card accessories-item" >
+            <img src="/Stocks/cats/cat collor 160...jpg" alt="Dog bowl" style="height:180px;">
+            <h3>Cat Collar</h3>
+            <p>Gk Pet Shop
+            </p>
+            <div class="price">₹150</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (same vibe as home) -->
+ <footer class="animate-on-scroll">
+  <div style="padding: 10px; background-color: #ff7d0b; border-radius: 10px; color: white; text-align: center;">
+    Contact Us
+  </div>
+
+  <section class="call-buton" style="padding: 20px; background-color: orange; font-size: large; font-weight: bold; color: white; display: flex; justify-content: center; align-items: center;font-size: large;">
+    <a class="cc-calto-action-ripple" href="tel:+918838435700" style="display: flex; align-items: center; gap: 12px; color: white; text-decoration: none;border-radius: 10px;">
+      
+      <!-- Rounded Icon -->
+      <span style="background-color: white; color: orange; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;border-radius: 0px;">
+        <i class="fa-solid fa-phone"></i>
+      </span>
+      
+      <span class="num">+91 88384 35700</span>
+    </a>
+  </section>
+
+  <p style="text-align: center;">&copy; All rights reserved.</p>
+</footer>
+
+
+
+
+  <!-- JS: mobile menu, scroll animations (same as home page) -->
+  <script>
+    // Mobile menu toggle (same IDs as home page so behaviour matches)
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('show');
+    });
+
+    // Scroll animation observer (same as home)
+    const scrollElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    scrollElements.forEach(el => observer.observe(el));
+
+    // Optional: simple "Add" button demo (no backend) - show small toast
+    document.querySelectorAll('.btn.primary').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const original = btn.innerText;
+        btn.innerText = "Added ✓";
+        setTimeout(() => btn.innerText = original, 900);
+      });
+    });
+
+    // Improve horizontal scroll experience on accessories row (drag to scroll)
+    (function makeDraggable(rowId) {
+      const row = document.getElementById(rowId);
+      if (!row) return;
+      let isDown = false, startX, scrollLeft;
+      row.addEventListener('mousedown', (e) => {
+        isDown = true;
+        row.classList.add('active');
+        startX = e.pageX - row.offsetLeft;
+        scrollLeft = row.scrollLeft;
+      });
+      row.addEventListener('mouseleave', () => isDown = false);
+      row.addEventListener('mouseup', () => isDown = false);
+      row.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - row.offsetLeft;
+        const walk = (x - startX) * 1; // scroll speed
+        row.scrollLeft = scrollLeft - walk;
+      });
+    })('accessoriesRow');
+  </script>
+
+</body>
+</html>

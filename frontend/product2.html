@@ -3,89 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweets Varieties</title>
+  <title>Fish Varieties Aquarium</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: Arial, sans-serif;
-      background: #fff9f5;
-      color: #333;
+      background: linear-gradient(to top, #001f3f, #0072ff);
+      color: #fff;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Bubble animation */
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: rise 10s infinite linear;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.7; }
+      50% { opacity: 0.5; }
+      100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
     }
 
     /* Header */
     header {
       position: sticky;
       top: 0;
-      background: #ffffff;
-      color: rgb(255, 170, 0);
+      background: rgba(0,0,50,0.9);
+      color: #fff;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
+      z-index: 1001;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 50px; width: auto; }
+    .logo-text { font-size: 1.5rem; font-weight: bold; color: #00ffff; font-family: 'Georgia', serif; }
 
-    .logo img {
-      height: 50px;
-      width: auto;
-    }
+    nav { display: flex; gap: 20px; }
+    nav a { text-decoration: none; color: #00ffff; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: #ffef00; }
 
-    .logo-text {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: rgb(255, 60, 0);
-      font-family: 'Times New Roman', Times, serif;
-      padding-left: 35px;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: rgb(255, 0, 0);
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffe0d9;
-    }
-
-    /* Hamburger button */
     .menu-btn {
       display: none;
       font-size: 28px;
       background: none;
-      color: rgb(0, 0, 0);
+      color: #fff;
       cursor: pointer;
-      border: 1px solid rgb(123, 123, 123);
+      border: 1px solid #00ffff;
       border-radius: 3px;
-      padding: 1px;
+      padding: 1px 5px;
     }
 
-    /* Mobile menu */
     .mobile-menu {
       display: none;
       flex-direction: column;
-      background: #ff7300;
+      background: rgba(0,0,50,0.95);
       position: absolute;
       top: 100%;
       left: 0;
@@ -93,166 +79,260 @@
       padding: 10px 0;
     }
 
-    .mobile-menu a {
-      padding: 10px 20px;
-      color: white;
-      text-decoration: none;
-      border-top: 1px solid #ff8c61;
+    .mobile-menu a { padding: 10px 20px; color: #00ffff; text-decoration: none; border-top: 1px solid #0072ff; }
+    .mobile-menu.show { display: flex; }
+
+    /* Fish Banner Sticky */
+    .fish-banner {
+      position: sticky;
+      top: 70px; /* header height */
+      z-index: 1000;
+      padding: 15px 20px;
+      background: rgba(0,150,255,0.6);
+      text-align: center;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: #fff;
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 30px rgba(0,255,255,0.3);
     }
 
-    .mobile-menu.show {
-      display: flex;
-    }
+    .fish-banner h1 { margin-bottom: 0.5rem; color: #ffef00; text-shadow: 1px 1px 4px #000; }
+    .fish-banner p.tagline { margin-bottom: 0; color: #b3ffff; font-size: 1rem; }
 
-    /* Main Content */
     main {
       flex: 1;
       padding: 2rem;
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
-    main h1 {
-      margin-bottom: 2rem;
-      color: #e85a4f;
-    }
-
-    .sweets{
-      padding: 20px;
-      background-color: orange;
-      text-align: center;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      color: white;
-    }
-
-    /* Sweets Grid */
-    .sweets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* Fish Grid */
+    .fish-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1.5rem;
+      z-index: 2;
+      position: relative;
     }
 
-    .sweet-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    .fish-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;   /* rectangle with smooth corners */
+      width: 260px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
       padding: 1rem;
-      transition: transform 0.2s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 15px rgba(0,255,255,0.2);
+      position: relative;
     }
 
-    .sweet-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .sweet-card img {
-      width: 100%;
-      border-radius: 8px;
-      height: 150px;
+    .fish-card img {
+      width: 230px;   /* bigger image */
+      height: 230px;
+      border-radius: 12px;  /* rounded corners */
       object-fit: cover;
+      border: none;   /* removed stroke */
+      margin-bottom: 10px;
     }
 
-    .sweet-card h3 {
-      margin-top: 10px;
-      color: #ff6f61;
+    .fish-card h3 {
+      margin-top: 0;
+      color: #ffef00;
+      text-shadow: 1px 1px 2px #000;
+      font-size: 1.1rem;
     }
 
-    /* Footer */
+    .arrow-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,255,255,0.3);
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .arrow-btn.rotate { transform: rotate(180deg); }
+
+    .fish-desc {
+      display: none;
+      background: rgba(0,0,50,0.8);
+      color: #b3ffff;
+      padding: 5px 8px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      text-align: center;
+      max-width: 200px;
+      word-wrap: break-word;
+    }
+
     footer {
-      background: #ff6f61;
-      color: white;
+      background: rgba(0,0,50,0.9);
+      color: #00ffff;
       text-align: center;
       padding: 1rem;
+      z-index: 2;
+      position: relative;
     }
 
-    /* Responsive Styles */
     @media (max-width: 768px) {
-      nav {
-        display: none; /* hide normal nav on mobile */
-      }
-
-      .menu-btn {
-        display: block;
-      }
+      nav { display: none; }
+      .menu-btn { display: block; }
+      .fish-card { width: 180px; }
+      .fish-card img { width: 160px; height: 160px; }
+      .fish-card h3 { font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Bubbles -->
+  <div class="bubble" style="left:10px; width:15px; height:15px; animation-duration:12s;"></div>
+  <div class="bubble" style="left:80px; width:10px; height:10px; animation-duration:8s;"></div>
+  <div class="bubble" style="left:150px; width:20px; height:20px; animation-duration:10s;"></div>
+  <div class="bubble" style="left:220px; width:12px; height:12px; animation-duration:14s;"></div>
+  <div class="bubble" style="left:300px; width:18px; height:18px; animation-duration:11s;"></div>
+  <div class="bubble" style="left:400px; width:14px; height:14px; animation-duration:9s;"></div>
+  <div class="bubble" style="left:500px; width:16px; height:16px; animation-duration:13s;"></div>
+  <div class="bubble" style="left:600px; width:12px; height:12px; animation-duration:10s;"></div>
+
   <!-- Navbar -->
   <header>
     <div class="logo">
-      <img src="/frontend/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
-      <span class="logo-text">MR Cake Shop</span>
+      <img src="/Stocks/Gk logo 1.png" alt="Fish World Logo">
+      <span class="logo-text">GK Pet Shop</span>
     </div>
     <nav>
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend#about">About</a>
-      <a href="/frontend#products">Products</a>
-      <a href="/frontend#contact">Contact</a>
+     <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
     </nav>
     <button class="menu-btn" id="menu-btn">☰</button>
-
     <div class="mobile-menu" id="mobile-menu">
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend#about">About</a>
-      <a href="/frontend#products">Products</a>
-      <a href="/frontend#contact">Contact</a>
+     <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
     </div>
   </header>
 
-  <div class="sweets">
-    <h1>Sweets</h1>
+  <div class="fish-banner">
+    <h1>Fish Varieties</h1>
+    <p class="tagline">Explore our vibrant collection of colorful aquarium fish</p>
   </div>
 
   <!-- Main Content -->
   <main>
-    <div class="sweets-grid">
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/s3.jpg" alt="Ladoo">
-        <h3>Ladoo</h3>
+    <div class="fish-grid">
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/gold fish.png" alt="Goldfish">
+        <h3>Goldfish</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Goldfish are small, bright, and peaceful aquarium fish.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/s5.jpg" alt="Gulab Jamun">
-        <h3>Gulab Jamun</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/clown fish.png" alt="Clownfish">
+        <h3>Clownfish</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Clownfish are colorful reef fish, famous from movies.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/s6.jpg" alt="Barfi">
-        <h3>Barfi</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/betta.png" alt="Betta Fish">
+        <h3>Betta Fish</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Betta fish are aggressive and brightly colored aquarium fish.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/sw1.jpg" alt="Rasgulla">
-        <h3>Rasgulla</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/angle fish.png" alt="Angelfish">
+        <h3>Angelfish</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Angelfish are elegant and tall-bodied freshwater fish.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/sw2.jpg" alt="Halwa">
-        <h3>Halwa</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/guppy.png" alt="Guppy">
+        <h3>Guppy</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Guppies are small, active, and colorful livebearers.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/sw2.jpg" alt="Mysore Pak">
-        <h3>Mysore Pak</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/neon trial.png" alt="Neon Tetra">
+        <h3>Neon Tetra</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Neon Tetras are tiny and glow with neon stripes.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/sw2.jpg" alt="Jalebi">
-        <h3>Jalebi</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/discuss fish.png" alt="Discus Fish">
+        <h3>Discus Fish</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Discus fish are round, colorful, and tropical freshwater fish.</div>
       </div>
-      <div class="sweet-card">
-        <img src="/frontend/Stocks/Sweates/s6.jpg" alt="Kaju Katli">
-        <h3>Kaju Katli</h3>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/molly fish.png" alt="Molly">
+        <h3>Molly</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Mollies are peaceful, livebearing freshwater fish.</div>
+      </div>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/oscar fish.png" alt="Swordtail">
+        <h3>Swordtail</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Swordtails are named for their sword-like tail fins.</div>
+      </div>
+      <div class="fish-card">
+        <img src="/Stocks/Fish/Fish C/koi.png" alt="Rainbow Fish">
+        <h3>Rainbow Fish</h3>
+        <button class="arrow-btn" onclick="toggleDesc(this)">▼</button>
+        <div class="fish-desc">Rainbow Fish have shiny, colorful scales that sparkle.</div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 MR Cake Shop | All Rights Reserved</p>
-  </footer>
+<footer class="animate-on-scroll">
+  <div style="padding: 10px; background-color: rgb(0, 132, 248); border-radius: 10px; color: white; text-align: center;">
+    Contact Us
+  </div>
+
+  <section class="call-buton" style="padding: 20px; background-color: rgb(61, 156, 250); font-size: large; font-weight: bold; color: white; display: flex; justify-content: center; align-items: center;font-size: large;">
+    <a class="cc-calto-action-ripple" href="tel:+918838435700" style="display: flex; align-items: center; gap: 12px; color: white; text-decoration: none;border-radius: 10px;">
+      
+      <!-- Rounded Icon -->
+      <span style="background-color: white; color: rgb(0, 110, 220); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;border-radius: 0px;">
+        <i class="fa-solid fa-phone"></i>
+      </span>
+      
+      <span class="num">+91 88384 35700</span>
+    </a>
+  </section>
+
+  <p style="text-align: center;">&copy; All rights reserved.</p>
+</footer>
 
   <script>
+    // Mobile menu toggle
     const menuBtn = document.getElementById("menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => { mobileMenu.classList.toggle("show"); });
 
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("show");
-    });
+    // Toggle fish description & arrow rotation
+    function toggleDesc(btn) {
+      const desc = btn.nextElementSibling;
+      desc.style.display = desc.style.display === "block" ? "none" : "block";
+      btn.classList.toggle("rotate");
+    }
   </script>
 
 </body>

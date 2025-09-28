@@ -1,230 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fresh Juice Varieties</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cock Varieties</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #fffdf7;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: #FDF6E3;
+  color: #2C3E50;
+}
 
-    /* Navbar */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #ffffff;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-    }
-    .logo { display: flex; align-items: center; gap: 10px; }
-    .logo img { height: 55px; width: auto; }
-    .logo-text {
-      font-size: 25px;
-      font-weight: bold;
-      color: #d35400;
-      font-family: 'Times New Roman', Times, serif;
-      padding-left: 35px;
-    }
-    nav { display: flex; gap: 20px; }
-    nav a {
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 500;
-      color: #333;
-      transition: color 0.3s;
-      position: relative;
-    }
-    nav a::after {
-      content: '';
-      display: block;
-      height: 2px;
-      width: 0%;
-      background: #e67e22;
-      transition: width 0.3s;
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-    }
-    nav a:hover::after { width: 100%; }
-    nav a:hover { color: #e67e22; }
-    .menu-btn {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      padding: 5px 10px;
-      border-radius: 5px;
-      background: none;
-    }
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: #ff7300;
-      padding: 15px 20px;
-    }
-    .mobile-menu a {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      text-decoration: none;
-      color: #ffffff;
-    }
-    @media (max-width: 768px) {
-      nav { display: none; }
-      .menu-btn { display: block; }
-      .mobile-menu.show { display: flex; }
-    }
+/* Navbar */
+header {
+  position: sticky;
+  top: 0;
+  background: #F39C12; /* Feather Orange */
+  z-index: 1000;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 50px; }
+.logo-text { font-size: 24px; font-weight: bold; color: #fff; font-family: 'Georgia', serif; }
+nav { display: flex; gap: 20px; }
+nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fff;
+  transition: 0.3s;
+}
+nav a:hover { color: #E74C3C; } /* Comb Red */
+.menu-btn {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #fff;
+  background: none;
+  border: none;
+}
 
-    .fresh{
-        padding: 20px;
-        background-color: orange;
-        text-align: center;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        color: white;
-    }
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #F39C12;
+  padding: 15px 20px;
+}
+.mobile-menu a {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  text-decoration: none;
+  color: #fff;
+}
 
-    /* Juice Container - Staggered Grid */
-    .juice-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-      padding: 30px;
-    }
+/* Banner */
+.cock-banner {
+  padding: 25px;
+  text-align: center;
+  background: linear-gradient(135deg, #E74C3C, #F39C12, #3498DB); /* Red→Orange→Blue */
+  color: #fff;
+}
+.cock-banner h1 { font-size: 2rem; margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);}
+.cock-banner p { font-size: 1rem; }
 
-    .juice-card {
-      background: linear-gradient(135deg, #fdfbfb, #ebedee);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-align: center;
-    }
-    .juice-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 3px solid #e67e22;
-    }
-    .juice-card h3 {
-      margin: 15px 0 5px;
-      color: #e67e22;
-      font-size: 1.3rem;
-    }
-    .juice-card p {
-      padding: 0 15px 15px;
-      font-size: 0.95rem;
-      color: #555;
-    }
-    .juice-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
+/* Cock Varieties Section */
+.cock-variety {
+  position: relative;
+  margin: 20px auto;
+  max-width: 1200px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
 
-    /* Make first card full width every 3rd item */
-    .juice-card:nth-child(3n+1) {
-      grid-column: span 2;
-    }
+/* Video Background */
+.cock-variety video {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  filter: blur(3px);
+}
 
-    /* Footer */
-    footer {
-      background: #ecc500;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: auto;
-    }
-  </style>
+/* Overlay Card */
+.overlay-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #E74C3C, #F39C12, #3498DB); /* Red→Orange→Blue */
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  max-width: 800px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  color: #fff;
+}
+
+/* Image & Info */
+.info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.info-box img {
+  width: 150px;
+  border-radius: 15px;
+  object-fit: cover;
+  border: 3px solid #fff;
+}
+.info-box h3 { font-size: 1.5rem; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.4);}
+.info-box p { font-size: 1rem; text-align: center; color: #fff; }
+
+/* Footer */
+footer {
+  background: #2C3E50; /* Dark feathers */
+  color: #F7DC6F; /* Beak Yellow */
+  text-align: center;
+  padding: 1rem;
+  margin-top: 20px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .overlay-card {
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .info-box img { width: 140px; }
+  nav { display: none; }
+  .menu-btn { display: block; }
+  .mobile-menu.show { display: flex; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
-    <div class="navbar">
-      <div class="logo">
-        <img src="/frontend/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
-        <span class="logo-text">MR Cake Shop</span>
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <img src="/frontend/Stocks/Gk logo 1.png" alt="Logo">
+      <span class="logo-text">GK Pet Shop</span>
+    </div>
+    <nav>
+     <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+ <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
+  </div>
+</header>
+
+<div class="cock-banner">
+  <h1>Cock Varieties</h1>
+  <p>Discover unique roosters with video previews 🐓</p>
+</div>
+
+<section id="varieties">
+  <!-- Example Variety -->
+  <div class="cock-variety">
+    <video src="/Stocks/SSYouTube.online_Birds Flying  in the Sky at Sunset 🌅beauty of nature bird music videobirds flying video_720p.mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 5.jpg" alt="Brahma">
+        <h3>Brahma</h3>
+        <p>Large, gentle bird with feathered legs and calm temperament.</p>
       </div>
-      <nav>
-        <a href="/frontend/index.html">Home</a>
-        <a href="/frontend/cakes.html">Cakes</a>
-        <a href="/frontend/sweets.html">Sweets</a>
-        <a href="/frontend/juices.html">Juices</a>
-        <a href="/frontend#contact">Contact</a>
-      </nav>
-      <button class="menu-btn" id="menu-btn">☰</button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend/cakes.html">Cakes</a>
-      <a href="/frontend/sweets.html">Sweets</a>
-      <a href="/frontend/juices.html">Juices</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </header>
-  
-  <div class="fresh">
-    <h1>Feresh Juice</h1>
   </div>
 
-  <!-- Juice Varieties -->
-  <section class="juice-container">
-    <div class="juice-card">
-      <img src="/frontend/Stocks/Fresh Juice/Untitled-1.jpg" alt="Orange Juice">
-      <h3>Orange Juice</h3>
-      <p>Freshly squeezed oranges packed with Vitamin C for a healthy start.</p>
+  <div class="cock-variety">
+    <video src="/Stocks/cock video .mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 7.jpg" alt="Leghorn">
+        <h3>Leghorn</h3>
+        <p>Active breed, excellent egg production.</p>
+      </div>
     </div>
-    <div class="juice-card">
-      <img src="/frontend/Stocks/Fresh Juice/Untitled- 4.jpg" alt="Watermelon Juice">
-      <h3>Watermelon Juice</h3>
-      <p>Refreshing and hydrating, perfect for summer heat.</p>
+  </div>
+
+   <div class="cock-variety">
+    <video src="/Stocks/SSYouTube.online_Birds Flying  in the Sky at Sunset 🌅beauty of nature bird music videobirds flying video_720p.mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 6.jpg" alt="Aseel">
+        <h3>Aseel</h3>
+        <p>Active breed, excellent egg production.</p>
+      </div>
     </div>
-    <div class="juice-card">
-      <img src="/frontend/Stocks/Fresh Juice/Untitled-2.jpg" alt="Mango Juice">
-      <h3>Mango Juice</h3>
-      <p>Sweet and tropical flavor made from ripe Alphonso mangoes.</p>
+  </div>
+
+   <div class="cock-variety">
+    <video src="/Stocks/cock video .mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 4.jpg" alt="Kattu Aseel">
+        <h3>Kattu Aseel</h3>
+        <p>Active breed, excellent egg production.</p>
+      </div>
     </div>
-    <div class="juice-card">
-      <img src="/frontend/Stocks/Fresh Juice/Untitled- 3.jpg" alt="Apple Juice">
-      <h3>Apple Juice</h3>
-      <p>Natural sweetness from crisp apples, a favorite for kids and adults.</p>
+  </div>
+
+   <div class="cock-variety">
+    <video src="/Stocks/SSYouTube.online_Birds Flying  in the Sky at Sunset 🌅beauty of nature bird music videobirds flying video_720p.mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 3.jpg" alt="Sengaruppu">
+        <h3>Sengaruppu</h3>
+        <p>Active breed, excellent egg production.</p>
+      </div>
     </div>
-    <div class="juice-card">
-      <img src="/frontend/Stocks/Fresh Juice/Untitled-2.jpg" alt="Pomegranate Juice">
-      <h3>Pomegranate Juice</h3>
-      <p>Rich in antioxidants, improves immunity and keeps you fresh.</p>
+  </div>
+
+   <div class="cock-variety">
+    <video src="/Stocks/cock video .mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 2.png" alt="Sengiri">
+        <h3>Sengiri</h3>
+        <p>Active breed, excellent egg production.</p>
+      </div>
     </div>
-    <div class="juice-card">
-      <img src="/frontend/Stocks/Fresh Juice/Untitled- 4.jpg" alt="Lemon Juice">
-      <h3>Lemon Juice</h3>
-      <p>Classic tangy flavor, boosts digestion and refreshes instantly.</p>
+  </div>
+
+   <div class="cock-variety">
+    <video src="/Stocks/SSYouTube.online_Birds Flying  in the Sky at Sunset 🌅beauty of nature bird music videobirds flying video_720p.mp4" autoplay muted loop></video>
+    <div class="overlay-card">
+      <div class="info-box">
+        <img src="/Stocks/Cock/Cock C/cock 1.png" alt="Karisal">
+        <h3>Karisal</h3>
+        <p>Active breed, excellent egg production.</p>
+      </div>
     </div>
+  </div>
+
+  <!-- Add remaining 8 varieties similarly -->
+
+</section>
+
+<footer class="animate-on-scroll">
+  <div style="padding: 10px; background-color: #ff7d0b; border-radius: 10px; color: white; text-align: center;">
+    Contact Us
+  </div>
+
+  <section class="call-buton" style="padding: 20px; background-color: orange; font-size: large; font-weight: bold; color: white; display: flex; justify-content: center; align-items: center;font-size: large;">
+    <a class="cc-calto-action-ripple" href="tel:+918838435700" style="display: flex; align-items: center; gap: 12px; color: white; text-decoration: none;border-radius: 10px;">
+      
+      <!-- Rounded Icon -->
+      <span style="background-color: white; color: orange; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;border-radius: 0px;">
+        <i class="fa-solid fa-phone"></i>
+      </span>
+      
+      <span class="num">+91 88384 35700</span>
+    </a>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 MR Cake Shop | All Rights Reserved</p>
-  </footer>
+  <p style="text-align: center; margin: 10px;">&copy; All rights reserved.</p>
+</footer>
 
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("show");
-    });
-  </script>
+<script>
+const menuBtn = document.getElementById("menu-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("show");
+});
+</script>
 
 </body>
 </html>

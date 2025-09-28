@@ -3,307 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MR Cakes Shop</title>
+  <title>GK Pet Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="home page.css">
+  <style>
+    /* Feedback Carousel CSS */
+    #crfeedbacks{
+      padding: 20px;
+      background-color: rgb(255, 166, 0);
+      text-align: center;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: white;
+    }
+    .carousel-container {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+    .carousel { display: flex; transition: transform 0.5s ease-in-out; }
+    .carousel-item { min-width: 100%; box-sizing: border-box; padding: 30px; text-align: center; background: #fff8f0; }
+    .carousel-item h5 { margin-bottom: 10px; color: #333; }
+    .carousel-item p { font-style: italic; color: #555; }
+    .carousel-buttons { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); }
+    .carousel-buttons button { background: rgba(0,0,0,0.5); border: none; color: white; font-size: 24px; padding: 8px 12px; cursor: pointer; border-radius: 50%; }
+    .carousel-buttons button:hover { background: rgba(0,0,0,0.8); }
+    .card { min-width: 100%; padding: 20px; text-align: center; }
+    .card p { font-size: 15px; color: #444; margin-bottom: 10px; }
+    .card h4 { font-size: 16px; color: #111; margin-top: 8px; }
+    .dots { text-align: center; margin: 12px 0; }
+    .dot { height: 10px; width: 10px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block; transition: background-color 0.3s ease; }
+    .active { background-color: #333; }
+    @media (max-width: 480px) { .card p { font-size: 14px; } }
+
+    /* Banner Video */
+    .banner-image video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /*carousel*/
+  .pet-marquee-wrapper {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    padding: 50px;
+  }
+
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 40px 0;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    border-radius: 5px;
+  }
+
+  .marquee-content {
+    display: inline-block;
+    animation: scroll 25s linear infinite;
+  }
+
+  .marquee-content img {
+    height: 80px;
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+    
+
+    /* 🔥 Scroll Animation */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-on-scroll.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+     .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 50px; width: auto; }
+    /* .logo-text{margin-left: 40px;} */
+
+
+
+    /* Map Section */
+    .map-container {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 1000px;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .findus{
+      background-color: rgb(247, 169, 25);
+      padding: 20px;  
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+  </style>
 </head>
-<style>
-
-  #crfeedbacks{
-    padding: 20px;
-    background-color: rgb(255, 166, 0);
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: white;
-
-  }
-.carousel-container {
-  position: relative;
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 30px;
-  text-align: center;
-  background: #fff8f0;
-}
-
-.carousel-item h5 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.carousel-item p {
-  font-style: italic;
-  color: #555;
-}
-
-.carousel-buttons {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-
-.carousel-buttons button {
-  background: rgba(0,0,0,0.5);
-  border: none;
-  color: white;
-  font-size: 24px;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-.carousel-buttons button:hover {
-  background: rgba(0,0,0,0.8);
-}
-
-
-.card {
-  min-width: 100%;
-  padding: 20px;
-  text-align: center;
-}
-
-.card p {
-  font-size: 15px;
-  color: #444;
-  margin-bottom: 10px;
-}
-
-.card h4 {
-  font-size: 16px;
-  color: #111;
-  margin-top: 8px;
-}
-
-.dots {
-  text-align: center;
-  margin: 12px 0;
-}
-
-.dot {
-  height: 10px;
-  width: 10px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-.active {
-  background-color: #333;
-}
-
-/* Mobile friendly */
-@media (max-width: 480px) {
-  .card p {
-    font-size: 14px;
-  }
-}
-</style>
 <body>
 
   <!-- Navbar -->
 <header>
-  <div class="navbar">
+  <div class="navbar animate-on-scroll">
     <div class="logo">
-      <img src="/frontend/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
-      <span class="logo-text">MR Cake Shop</span>
+      <img src="/Stocks/Gk logo 1.png" alt="GK Pet Shop Logo">
+      <span class="logo-text">GK Pet Shop</span>
     </div>
     <nav>
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend/#about">About</a>
-      <a href="/frontend/#products">Products</a>
-      <a href="/frontend/#contact">Contact</a>
+      <a href="/index.html">Home</a>
+      <a href="#about">About</a>
+      <a href="#products">Pets</a>
+      <a href="#contact">Contact</a>
     </nav>
     <button class="menu-btn" id="menu-btn">☰</button>
   </div>
 
   <div class="mobile-menu" id="mobile-menu">
-    <a href="/frontend/index.html">Home</a>
-    <a href="/frontend/#about">About</a>
-    <a href="/frontend/#products">Products</a>
-    <a href="/frontend/#contact">Contact</a>
+    <a href="/index.html">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Pets</a>
+    <a href="#contact">Contact</a>
   </div>
 </header>
 
-
   <!-- Hero -->
 <section>
-  <div class="box1">
+  <div class="box1 animate-on-scroll">
     <div class="whitespace">
-      <h2>Freshly Maded Foods</h2>
-      <p>something about it </p>
+      <h2>Healthy & Happy Pets</h2>
+      <p>Find your perfect companion with GK Pet Shop 🐾</p>
     </div>
     <div class="banner-image">
-  <img src="/frontend/Stocks/1756749544712.jpg" alt="Bakery Image">
-</div>
+      <video autoplay muted loop playsinline>
+        <source src="/Stocks/SSYouTube.online_Birds Flying  in the Sky at Sunset 🌅beauty of nature bird music videobirds flying video_720p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 </section>
 
-
   <!-- About -->
-  <section class="about" id="about">
+  <section class="about animate-on-scroll" id="about">
     <h2>About Us</h2>
     <p>
-      At Sweet Bakes, we believe every bite should bring a smile 😊.
-      Our bakers craft cakes, cookies, and pastries with love and the freshest ingredients. 
-      Since 2005, we've been spreading sweetness across the city.
+      At GK Pet Shop, we care for animals like family ❤️.  
+      From fishes to birds, rabbits to ducks, we provide healthy, well-cared pets.  
+      Since 2010, we’ve been trusted by pet lovers to bring joy to their homes.
     </p>
   </section>
 
-  <!-- Products -->
-  <section class="products" id="products">
-    <h2>Our Products</h2>
+  <!-- Pets -->
+  <section class="products animate-on-scroll" id="products">
+    <h2>Our Pet Varieties</h2>
     <div class="product-grid">
-      <div class="product">
-        <img src="/frontend/Stocks/Untitled-1.jpg" alt="Chocolate Cake">
-        <h3>Fresh Cream Cakes</h3>
-        <p>Rich, moist and heavenly delicious.</p>
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/fish.jpg" alt="Fish">
+        <h3>Fish</h3>
+        <p>Colorful, peaceful, and easy to care for.</p>
         <div class="viewmore">
-          <a href="/frontend/product1.html">View More</a>
+          <a href="/product2.html">View More</a>
         </div>
       </div>
-      <div class="product">
-        <img src="/frontend/Stocks/Untitled-5.jpg" alt="Cookies">
-        <h3>Sweats</h3>
-        <p>Crispy, buttery and melts in your mouth.</p>
+
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/Pigeon.jpg" alt="Pigeon">
+        <h3>Pigeon</h3>
+        <p>Gentle birds that bring charm and calmness.</p>
         <div class="viewmore">
-          <a href="/frontend/product2.html">View More</a>
+          <a href="/product1.html">View More</a>
         </div>
       </div>
-      <div class="product">
-        <img src="/frontend/Stocks/Untitled-6.jpg" alt="Pastry">
-        <h3>Snacks</h3>
-        <p>Light, creamy and fruity delight.</p>
+
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/birds.jpg" alt="Birds">
+        <h3>Birds</h3>
+        <p>Cheerful, chirpy friends to brighten your home.</p>
         <div class="viewmore">
-           <a href="/frontend/product3.html">View More</a>
+           <a href="/product3.html">View More</a>
         </div>
       </div>
-      <div class="product">
-        <img src="/frontend/Stocks/Untitled-4.jpg" alt="Cupcake">
-        <h3>Falooda</h3>
-        <p>Soft, fluffy and perfectly sweet.</p>
+
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/rabbit.jpg" alt="Rabbit">
+        <h3>Rabbit</h3>
+        <p>Adorable, fluffy, and full of love.</p>
         <div class="viewmore">
-           <a href="/frontend/product4.html">View More</a>
+           <a href="/product4.html">View More</a>
         </div>
       </div>
-       <div class="product">
-        <img src="/frontend/Stocks/Untitled-2.jpg" alt="Cupcake">
-        <h3>Fresh Juice</h3>
-        <p>Soft, fluffy and perfectly sweet.</p>
+      
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/cock.jpg" alt="Cock">
+        <h3>Cock</h3>
+        <p>Energetic and lively farm companions.</p>
         <div class="viewmore">
-           <a href="/frontend/product5.html">View More</a>
+           <a href="/product5.html">View More</a>
         </div>
       </div>
-       <div class="product">
-        <img src="/frontend/Stocks/Untitled-3.jpg" alt="Cupcake">
-        <h3>Ice Creams</h3>
-        <p>Soft, fluffy and perfectly sweet.</p>
+
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/duck.jpg" alt="Duck">
+        <h3>Duck</h3>
+        <p>Playful water-loving friends for your backyard.</p>
         <div class="viewmore">
-        <a href="/frontend/product6.html">View More</a>
+        <a href="/product6.html">View More</a>
+        </div>
+      </div>
+
+      <div class="product animate-on-scroll">
+        <img src="/Stocks/food and accessories.jpg" alt="Duck">
+        <h3>Foods And Accessories</h3>
+        <p>Playful water-loving friends for your backyard.</p>
+        <div class="viewmore">
+        <a href="/foods and accosories.html">View More</a>
         </div>
       </div>
     </div>
-  </section>
-<div id="crfeedbacks">
-  <h2>Custemer Feedbacks</h2>
-<div class="carousel-container">
-  <div class="carousel" id="carousel-content">
-    <!-- Approved feedbacks will load here -->
-  </div>
 
-  <div class="carousel-buttons">
-    <button id="prevBtn">&#10094;</button>
-    <button id="nextBtn">&#10095;</button>
+<div class="marquee-container">
+  <div class="marquee-content">
+    <img src="/Stocks/brand logos/Brand/whiskas.jpg" alt="Whiskas">
+    <img src="/Stocks/brand logos/Brand/me o.jpg" alt="Me-O">
+    <img src="/Stocks/brand logos/Brand/doorls.jpg" alt="Drools">
+    <img src="/Stocks/brand logos/Brand/shemba.jpg" alt="Sheba">
+    <img src="/Stocks/brand logos/Brand/royal canin.jpg" alt="Royal Canin">
+    <img src="/Stocks/brand logos/Brand/pedigree.jpg" alt="Pedigree">
+    <img src="/Stocks/brand logos/Brand/dogsee play.jpg" alt="Dogsee Chew">
+    <img src="/Stocks/brand logos/Brand/fermina.jpg" alt="Farmina N&D">
+    <img src="/Stocks/brand logos/Brand/acana.jpg" alt="Acana">
+    <img src="/Stocks/brand logos/Brand/orijin.jpg" alt="Orijen">
   </div>
 </div>
 
+</section>
+  
+
+<div id="crfeedbacks" class="animate-on-scroll">
+  <h2>Customer Feedbacks</h2>
+  <div class="carousel-container">
+    <div class="carousel" id="carousel-content">
+      <!-- Approved feedbacks will load here -->
+    </div>
+    <div class="carousel-buttons">
+      <button id="prevBtn">&#10094;</button>
+      <button id="nextBtn">&#10095;</button>
+    </div>
+  </div>
 </div>
 
   <!-- Contact -->
-  <section class="contact" id="contact">
-    <h2>Give Your Feedback</h2>
+  <section class="contact animate-on-scroll" id="contact">
+    <h2>Share Your Feedback</h2>
     <form id="feedbackForm">
-    <input type="text" name="name" placeholder="Your Name" required><br>
-    <input type="email" name="email" placeholder="Your Email" required><br>
-    <textarea name="message" placeholder="Your Feedback" required></textarea><br>
-    <button type="submit">Submit</button>
-  </form>
-  
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" placeholder="Your Feedback" required></textarea><br>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
 
-<script>
-document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  // Collect form data
-  const formData = {
-    name: e.target.name.value,
-    email: e.target.email.value,
-    message: e.target.message.value
-  };
-
-  console.log("📝 Form data to send:", formData); // Debug log
-
-  try {
-    // Send POST request to backend
-const res = await fetch("https://bakery-backend-1.onrender.com/feedback", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData)
-});
-
-
-
-    // Check if server responded
-    if (!res.ok) {
-      console.error("❌ Server returned an error:", res.status, res.statusText);
-    }
-
-    const data = await res.json();
-    console.log("📩 Server response:", data);
-
-    if (res.ok) {
-      alert("✅ Feedback sent successfully!");
-      e.target.reset();
-    } else {
-      alert("❌ Failed to send feedback!");
-    }
-  } catch (err) {
-    console.error("❌ Error sending feedback:", err);
-    alert("❌ Error sending feedback!");
-  }
-});
-</script>
-
-
-
+  <!-- Map Section -->
+  <section class="animate-on-scroll">
+    <h2 class="findus"  style="text-align:center; margin-top:20px;">Find Us Here</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7815.8780976572125!2d78.14422026334837!3d11.627693712811604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefbb3608c1fd%3A0x6e2f62175b198ee0!2sGK%20pet%20and%20Aquarium!5e0!3m2!1sen!2sin!4v1758297718289!5m2!1sen!2sin" 
+      width="600" 
+      height="450"
+       style="border:0;" 
+       allowfullscreen="" 
+       loading="lazy" 
+       referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Sweet Bakes. All rights reserved.</p>
-  </footer>
+ <footer class="animate-on-scroll">
+  <div style="padding: 10px; background-color: #ff7d0b; border-radius: 10px; color: white; text-align: center;">
+    Contact Us
+  </div>
 
+  <section class="call-buton" style="padding: 20px; background-color: orange; font-size: large; font-weight: bold; color: white; display: flex; justify-content: center; align-items: center;font-size: large;">
+    <a class="cc-calto-action-ripple" href="tel:+918838435700" style="display: flex; align-items: center; gap: 12px; color: white; text-decoration: none;border-radius: 10px;">
+      
+      <!-- Rounded Icon -->
+      <span style="background-color: white; color: orange; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;border-radius: 0px;">
+        <i class="fa-solid fa-phone"></i>
+      </span>
+      
+      <span class="num">+91 88384 35700</span>
+    </a>
+  </section>
+
+  <p style="text-align: center;margin: 20px;">&copy; All rights reserved.</p>
+</footer>
 <script>
+/* same JS (unchanged classes & ids) */
 const API_URL = "https://bakery-backend-1.onrender.com";
 let currentIndex = 0;
 
-// --- Carousel ---
 async function loadApprovedFeedbacks() {
   try {
     const res = await fetch(`${API_URL}/feedback/approved`);
@@ -338,7 +359,6 @@ document.getElementById("prevBtn").addEventListener("click", () => showSlide(cur
 document.getElementById("nextBtn").addEventListener("click", () => showSlide(currentIndex + 1));
 setInterval(() => showSlide(currentIndex + 1), 3000);
 
-// --- Feedback Form ---
 const feedbackForm = document.getElementById("feedbackForm");
 feedbackForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -367,19 +387,27 @@ feedbackForm.addEventListener("submit", async (e) => {
   }
 });
 
-// --- Mobile Menu ---
 const menuBtn = document.getElementById("menu-btn");
 const mobileMenu = document.getElementById("mobile-menu");
 menuBtn.addEventListener("click", () => {
   mobileMenu.classList.toggle("show");
 });
 
-// Initial load
 loadApprovedFeedbacks();
+
+/* 🔥 Scroll Animation JS */
+const scrollElements = document.querySelectorAll(".animate-on-scroll");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.1 });
+
+scrollElements.forEach(el => observer.observe(el));
 </script>
 
-
-
-
-</body>
+</body>  
 </html>

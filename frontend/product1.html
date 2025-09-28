@@ -3,117 +3,258 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fresh Cream Cakes</title>
-  <link rel="stylesheet" href="/frontend/home page.css">
+  <title>Pet Shop - Pigeon Varieties</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background-color: #f1f1f1; color: #1d3557; }
+
+    /* Navbar */
+    header {
+      background-color: #1d3557;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      position: relative;
+    }
+    .logo img { width: 50px; }
+
+    .brand {
+      position: absolute;   /* Always centered */
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-family: "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    nav { display: flex; gap: 20px; }
+    nav a { color: white; text-decoration: none; font-size: 16px; transition: color 0.3s; }
+    nav a:hover { color: #ff7f11; }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #0d1b2a;
+      padding: 0px;
+    }
+    .mobile-menu a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      border-bottom: 1px solid #2a3d55;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu.show { display: flex; }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-btn { display: block; }
+    }
+
+    /* Section */
+    .pigeon-section { padding: 30px; text-align: center; background-color: #ff7f11; color: white; }
+    .pigeon-section h1 { font-size: 28px; font-family: "Times New Roman", serif; }
+
+    /* Pigeon Grid */
+    .pigeon-container { column-count: 3; column-gap: 20px; padding: 20px; }
+    @media (max-width: 992px) { .pigeon-container { column-count: 2; } }
+    @media (max-width: 600px) { .pigeon-container { column-count: 1; } }
+
+    .pigeon-card {
+      display: inline-block;
+      margin: 0 0 20px;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .pigeon-card:hover { transform: translateY(-6px); box-shadow: 0 6px 14px rgba(0,0,0,0.25); }
+    .pigeon-card img { width: 100%; height: auto; display: block; }
+    .pigeon-card h3 {
+      padding: 12px;
+      font-size: 18px;
+      color: #1d3557;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .arrow { font-size: 18px; transition: transform 0.3s; }
+    .arrow.rotate { transform: rotate(180deg); }
+    .pigeon-info {
+      display: none;
+      padding: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      background: #fafafa;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Footer */
+    footer { background:#1d3557; color:white; text-align:center; padding:15px; margin-top:20px; }
+  </style>
 </head>
-<style>
-.cream{
-  padding: 20px;
-  background-color: orange;
-  text-align: center;
-  color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-</style>
 <body>
 
-  <!-- Header / Back Button -->
- <!-- Navbar -->
-<header>
-  <div class="navbar">
-    <div class="logo">
-      <img src="/frontend/Stocks/1756749640099.png" alt="Sweet Bakes Logo">
-      <span class="logo-text">MR Cake Shop</span>
-    </div>
-    <nav>
-      <a href="/frontend/index.html">Home</a>
-      <a href="/frontend/#about">About</a>
-      <a href="/frontend/#products">Products</a>
-      <a href="/frontend/#contact">Contact</a>
-    </nav>
-    <button class="menu-btn" id="menu-btn">☰</button>
-  </div>
+  <!-- Navbar -->
+  <header>
+    <div class="navbar">
+      <!-- Left: Logo -->
+      <div class="logo">
+        <img src="/Stocks/Gk logo 1.png" alt="Pet Shop Logo">
+      </div>
 
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="/frontend/index.html">Home</a>
-    <a href="/frontend/#about">About</a>
-    <a href="/frontend/#products">Products</a>
-    <a href="/frontend/#contact">Contact</a>
-  </div>
-</header>
+      <!-- Center: Brand -->
+      <div class="brand">
+        GK Pet Shop
+      </div>
 
-<div class="cream">
-  <h1>Cream Cakes</h1>
-</div>
-
-<!-- Cake Varieties Section -->
-  <section class="cakes-container">
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c1.jpg" alt="Strawberry Cake">
-      <h3>Strawberry Cream</h3>
+      <!-- Right: Nav / Menu -->
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
+      </nav>
+      <button class="menu-btn" id="menu-btn">☰</button>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c2.jpg" alt="Chocolate Cake">
-      <h3>Chocolate Cream</h3>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="/index.html">Home</a>
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#products">Pets</a>
+        <a href="/index.html#contacts">Contact</a>
+    </div>
+  </header>
+
+  <!-- Section -->
+  <section class="pigeon-section" id="pigeon">
+    <h1>Our Pigeon Varieties</h1>
+  </section>
+
+  <!-- Sample Pigeon Cards -->
+  <section class="pigeon-container">
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/kathal.jpg" alt="King Pigeon">
+      <h3>King Pigeon <span class="arrow">▼</span></h3>
+      <div class="pigeon-info">The King Pigeon is a large breed known for its broad body and calm temperament, often bred for exhibition.</div>
+    </div>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/kattu.jpg" alt="Fantail Pigeon">
+      <h3>Fantail Pigeon <span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Has a beautiful fan-shaped tail with up to 40 feathers. Often used in ornamental shows and exhibitions.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c3.jpg" alt="Mango Cake">
-      <h3>Mango Cream</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/kozhi padangu.jpg" alt="Jacobins ">
+      <h3>Jacobins <span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Distinguished by a feathered hood covering the head and neck. They look very royal and elegant.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c4.jpg" alt="Blueberry Cake">
-      <h3>Blueberry Cream</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/lagan.jpg" alt="Modena Pigeonr ">
+      <h3>Modena Pigeonr <span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Compact and colorful, available in many patterns. Originated in Italy and popular for exhibitions.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c5.jpg" alt="Pineapple Cake">
-      <h3>Pineapple Cream</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/line pura.jpg" alt="Capuchine Pigeon">
+      <h3>Capuchine Pigeon <span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Smaller version of Jacobins with a lighter feather hood. Known for its graceful and unique appearance.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c6.jpg" alt="Red Velvet Cake">
-      <h3>Red Velvet</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/mullai.jpg" alt="Lahore Pigeon">
+      <h3>Lahore Pigeon<span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Very attractive with white wings and a colored body. Popular as a pet and show pigeon due to its beauty.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c2.jpg" alt="Kiwi Cake">
-      <h3>Kiwi Cream</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/muski.jpg" alt="Carrier Pigeon">
+      <h3>Carrier Pigeon<span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Once widely used for sending messages in wars and old times. Has a long beak and upright posture.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c3.jpg" alt="Black Forest Cake">
-      <h3>Black Forest</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/sevvai.jpg" alt="Frillback Pigeon">
+      <h3>Frillback Pigeon<span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Special for its curly or frilled feathers on wings and body. Mostly bred for beauty and display.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c3.jpg" alt="Butterscotch Cake">
-      <h3>Butterscotch Cream</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/thangm.jpg" alt="Homing Pigeon">
+      <h3>Homing Pigeon<span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Famous for its strong homing instinct, can return to its loft from hundreds of kilometers away. Mostly used in pigeon racing and message carrying.</div>
     </div>
 
-    <div class="cake-card">
-      <img src="/frontend/Stocks/Cream Cakes/c5.jpg" alt="Oreo Cake">
-      <h3>Oreo Cream</h3>
+    <div class="pigeon-card">
+      <img src="/Stocks/Pura/Pura c/vannam.jpg" alt="Racing Homer">
+      <h3>Racing Homer<span class="arrow">▼</span></h3>
+      <div class="pigeon-info">Racing Homers are bred for speed and endurance, used in pigeon racing competitions worldwide.</div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 MR Cake Shop | Fresh Cream Cakes</p>
-  </footer>
+ <footer class="animate-on-scroll">
+  <div style="padding: 10px; background-color: #ff7d0b; border-radius: 10px; color: white; text-align: center;">
+    Contact Us
+  </div>
 
+  <section class="call-buton" style="padding: 20px; background-color: orange; font-size: large; font-weight: bold; color: white; display: flex; justify-content: center; align-items: center;font-size: large;">
+    <a class="cc-calto-action-ripple" href="tel:+918838435700" style="display: flex; align-items: center; gap: 12px; color: white; text-decoration: none;border-radius: 10px;">
+      
+      <!-- Rounded Icon -->
+      <span style="background-color: white; color: orange; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;border-radius: 0px;">
+        <i class="fa-solid fa-phone"></i>
+      </span>
+      
+      <span class="num">+91 88384 35700</span>
+    </a>
+  </section>
+
+  <p style="text-align: center;">&copy; All rights reserved.</p>
+</footer>
 
   <script>
-const menuBtn = document.getElementById("menu-btn");
-const mobileMenu = document.getElementById("mobile-menu");
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("show"));
 
-menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("show");
-});
-</script>
-
-
+    // Expand/Collapse Info
+    document.querySelectorAll(".pigeon-card h3").forEach(header => {
+      header.addEventListener("click", () => {
+        const info = header.nextElementSibling;
+        const arrow = header.querySelector(".arrow");
+        info.style.display = info.style.display === "block" ? "none" : "block";
+        arrow.classList.toggle("rotate");
+      });
+    });
+  </script>
 </body>
 </html>
