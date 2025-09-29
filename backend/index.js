@@ -9,14 +9,15 @@ require('dotenv').config();
 console.log("DEBUG: MONGO_URI = mongodb+srv://myadmin:mypassword123@cluster0.qfkzt8n.mongodb.net/MrBackery?retryWrites=true&w=majority&appName=Cluster0", process.env.MONGO_URI);
 
 // ✅ CORS setup
-app.use(cors({
-  origin: [
-    "https://gkpetshopandaquarium.netlify.app/", // ✅ correct production frontend
-    "http://localhost:3000"                     // local frontend
-  ],
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: [
+//     "https://gkpetshopandaquarium.netlify.app/", // ✅ correct production frontend
+//     "http://localhost:3000"                     // local frontend
+//   ],
+//   methods: ["GET", "POST", "PATCH", "DELETE"],
+//   credentials: true
+// }));
+app.use(cors());
 
 app.use(express.json());
 
