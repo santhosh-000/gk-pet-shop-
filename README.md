@@ -3,9 +3,11 @@ GK Pet Shop is a full-stack web application built with Node.js, Express, MongoDB
 
 It provides users with a smooth experience to explore pets, pet accessories, and share feedback — while allowing admins to manage feedbacks efficiently.
 
+
 🔗 Live Site: https://gkpetsshopandaquarium.netlify.app/
 
-🌟 Key Features
+
+🌟 KEY FEATURES
 
 🐶 Variety of Pets:
 Beautifully designed pages showcasing different types of pets.
@@ -18,9 +20,7 @@ Users can share feedbacks. These go to the Admin Panel first.
 
 🛡️ Admin Panel:
 Admin can Approve or Delete feedback.
-
 Approved → displayed on the site
-
 Deleted → removed permanently
 
 📍 Shop Location Map:
@@ -29,7 +29,10 @@ Integrated Google Map shows GK Pet Shop’s exact location.
 ⚡ Real-Time Update System:
 Admin approval instantly updates the feedback section in the live site.
 
-🧩 Folder Structure
+
+```
+🧩 FOLDER STRUCTURE
+
 gk-pet-shop-
 │
 ├── backend
@@ -38,7 +41,7 @@ gk-pet-shop-
 │   ├── .gitignore
 │   ├── git.gitignore
 │   ├── package.json
-│   ├── package-lock.json
+│   └── package-lock.json
 │
 ├── frontend
 │   ├── admin.html
@@ -61,25 +64,31 @@ gk-pet-shop-
 │   └── (other dependencies)
 │
 ├── README.md
-└── package-lock.json
+└── package-lock.json ``` 
 
-
+```
 ⚙️ Tech Stack
-Category	Technology
-Frontend	HTML, CSS, JavaScript
-Backend	Node.js, Express.js
-Database	MongoDB (via Mongoose)
-Hosting	Netlify (Frontend), Render (Backend)
-Dependencies	Axios, BcryptJS, UUID, CORS, Dotenv, Body-Parser
 
+| Category         | Technology                                       |
+| ---------------- | ------------------------------------------------ |
+| **Frontend**     | HTML, CSS, JavaScript                            |
+| **Backend**      | Node.js, Express.js                              |
+| **Database**     | MongoDB (via Mongoose)                           |
+| **Hosting**      | Netlify (Frontend), Render (Backend)             |
+| **Dependencies** | Axios, BcryptJS, UUID, CORS, Dotenv, Body-Parser |
+```
+
+```
 📡 API Routes
-Endpoint	Method	Description
-/api/users/register	POST	Register a new user
-/api/users/login	POST	User login
-/api/feedback	POST	Submit user feedback
-/api/admin/feedback	GET	Get all feedbacks (Admin)
-/api/admin/feedback/:id/approve	PATCH	Approve a feedback
-/api/admin/feedback/:id/delete	DELETE	Delete a feedback
+
+| Endpoint                          | Method | Description               |
+| --------------------------------- | ------ | ------------------------- |
+| `/api/feedback`                   | POST   | Submit user feedback      |
+| `/api/admin/feedback`             | GET    | Get all feedbacks (Admin) |
+| `/api/admin/feedback/:id/approve` | PATCH  | Approve a feedback        |
+| `/api/admin/feedback/:id/delete`  | DELETE | Delete a feedback         |
+```
+
 
 💡 How It Works
 
@@ -95,7 +104,9 @@ Endpoint	Method	Description
 
 🗺️ User can locate the GK Pet Shop using Google Maps on the homepage.
 
-🔮 Future Enhancements
+
+
+🔮 FUTURE ENHANCEMENTS
 
 🛒 Add cart and online ordering for pet accessories
 
@@ -105,12 +116,15 @@ Endpoint	Method	Description
 
 🧠 Improve UI with modern frameworks like React
 
-👨‍💻 Developer
 
-Developed by: Santhosh Kumar (Sathosh)
+
+👨‍💻 DEVELOPER
+
+Developed by: Santhosh Kumar. S
 
 Role: Full Stack Developer 
 Project Type: Real-Time Full Stack Application
+
 
 🏁 Conclusion
 
