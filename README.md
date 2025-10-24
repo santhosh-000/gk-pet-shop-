@@ -63,6 +63,7 @@ gk-pet-shop-
 ├── README.md
 └── package-lock.json
 
+
 ⚙️ Tech Stack
 Category	Technology
 Frontend	HTML, CSS, JavaScript
