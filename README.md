@@ -1,7 +1,5 @@
 # gk-pet-shop-
-GK Pet Shop is a full-stack web application built with Node.js, Express, MongoDB, and a frontend using HTML/CSS/JS.  It allows users to view,pet,pet accessories,pet fods,giving feedbacks and admin can handle customers feedbacks efficiently.
-
-It provides users with a smooth experience to explore pets, pet accessories, and share feedback — while allowing admins to manage feedbacks efficiently.
+GK Pet Shop is a full-stack web application built with Node.js, Express, MongoDB, and a frontend using HTML/CSS/JS. It provides users with a smooth experience to explore pets, pet accessories, and share feedback — while allowing admins to manage feedbacks efficiently.
 
 
 🔗 Live Site: https://gkpetsshopandaquarium.netlify.app/
