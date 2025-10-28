@@ -88,7 +88,7 @@ gk-pet-shop-
 ```
 
 ```
-💡 How It Works
+💡 HOW IT WORKS
 
 🧍 User visits the site → explores pets & accessories.
 
@@ -123,7 +123,7 @@ Developed by: Santhosh Kumar. S
 Role: Full Stack Developer || Project Type: Real-Time Full Stack Application
 
 
-🏁 Conclusion
+🏁 CONCLUSION
 
 GK Pet Shop is a real-world full stack project that blends design and functionality.
 It showcases CRUD operations, admin control.
