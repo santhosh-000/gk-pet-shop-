@@ -87,7 +87,7 @@ gk-pet-shop-
 | `/api/admin/feedback/:id/delete`  | DELETE | Delete a feedback         |
 ```
 
-
+```
 💡 How It Works
 
 🧍 User visits the site → explores pets & accessories.
@@ -120,8 +120,7 @@ gk-pet-shop-
 
 Developed by: Santhosh Kumar. S
 
-Role: Full Stack Developer 
-Project Type: Real-Time Full Stack Application
+Role: Full Stack Developer || Project Type: Real-Time Full Stack Application
 
 
 🏁 Conclusion
